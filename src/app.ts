@@ -1,8 +1,8 @@
 import express from 'express'
 const app = express()
 
-import customError from './middleware'
-import { getTask, addTask, deleteTask, updateTask } from './controller'
+import customError from './middleware/error'
+import { getTask, addTask, deleteTask, updateTask } from './controllers/task'
 
 const port = 3000
 

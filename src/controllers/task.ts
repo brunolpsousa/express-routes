@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import db from './db'
+import db from '../db/task'
 
 export function getTask(req: Request, res: Response) {
   const { id } = req.params

@@ -1,4 +1,4 @@
-import { createCustomError } from './middleware'
+import { createCustomError } from '../middleware/error'
 
 interface TaskSchema {
   id: number

@@ -1,6 +1,6 @@
 {
   "name": "routes-array",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Back-end using arrays as DB",
   "main": "dist/app.js",
   "scripts": {
