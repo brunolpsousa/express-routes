@@ -70,9 +70,16 @@ class Task {
     throw createCustomError(404, 'Task not found')
   }
 
-  getTasks() {
+  getTasks(id?: number) {
     if (Task.instance) {
-      return Task.instance.data
+      if (id === undefined) return Task.instance.data
+      id = Number(id)
+      for (const value of this.data.values()) {
+        if (value.id === id) {
+          return value
+        }
+      }
+      throw createCustomError(404, 'Task not found')
     }
   }
 }
