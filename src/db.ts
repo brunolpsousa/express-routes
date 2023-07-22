@@ -1,3 +1,5 @@
+import { createCustomError } from './middleware'
+
 interface TaskSchema {
   id: number
   name: string
@@ -21,10 +23,10 @@ class Task {
       name === undefined ||
       !(typeof name === 'string' && name.trim().length > 0 && name.length < 30)
     )
-      throw Error('Invalid name')
+      throw createCustomError(500, 'Invalid name')
 
     if (completed !== undefined && typeof completed !== 'boolean')
-      throw Error("Invalid type: 'completed'")
+      throw createCustomError(500, "Invalid type: 'completed'")
 
     const id = Math.round(Math.random() * Date.now()) * (this.data.length + 1)
     name = name.trim()
@@ -43,7 +45,7 @@ class Task {
         return
       }
     }
-    throw Error('Task not found')
+    throw createCustomError(404, 'Task not found')
   }
 
   updateTask(id: number, name: string, completed: boolean) {
@@ -53,10 +55,10 @@ class Task {
       name !== undefined &&
       !(typeof name === 'string' && name.trim().length > 0 && name.length < 30)
     )
-      throw Error('Invalid name')
+      throw createCustomError(500, 'Invalid name')
 
     if (completed !== undefined && typeof completed !== 'boolean')
-      throw Error("Invalid type: 'completed'")
+      throw createCustomError(500, "Invalid type: 'completed'")
 
     for (const value of this.data.values()) {
       if (value.id === id) {
@@ -65,7 +67,7 @@ class Task {
         return value
       }
     }
-    throw Error('Task not found')
+    throw createCustomError(404, 'Task not found')
   }
 
   getTasks() {

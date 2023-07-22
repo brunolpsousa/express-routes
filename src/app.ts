@@ -1,6 +1,7 @@
 import express from 'express'
 const app = express()
 
+import customError from './middleware'
 import { getTask, addTask, deleteTask, updateTask } from './controller'
 
 const port = 3000
@@ -11,10 +12,12 @@ app.get('/api/v1/tasks', getTask)
 app.post('/api/v1/tasks', addTask)
 app
   .route('/api/v1/tasks/:id')
+  .get(getTask)
   .put(updateTask)
   .patch(updateTask)
   .delete(deleteTask)
 
+app.use(customError)
 app.use((_: express.Request, res: express.Response) =>
   res.status(404).send('Route does not exist'),
 )
