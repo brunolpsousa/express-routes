@@ -62,7 +62,7 @@ class Task {
 
     for (const value of this.data.values()) {
       if (value.id === id) {
-        name && (value.name = name)
+        name && (value.name = name.trim())
         typeof completed === 'boolean' && (value.completed = completed)
         return value
       }
